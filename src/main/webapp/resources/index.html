@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="ngApp">
+
+<div class="container" ng-controller="contactController">
+
+    First Name: <input type="text" ng-model="name"><br>
+    Phone :     <input type="text" ng-model="phone"><br>
+    Email :     <input type="text" ng-model="email"><br>
+    <button ng-click="addContact()" type="button" class="btn btn-outline-inverse btn-lg">
+        Add
+    </button>
+    <br>
+    <br>
+    <table border="1">
+        <tr>
+            <th width="100">Name</th>
+            <th width="100">Phone</th>
+            <th width="100">Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="x in contacts">
+            <td>{{ x.name }}</td>
+            <td>{{ x.phone }}</td>
+            <td>{{ x.email }}</td>
+            <td> <button>Update</button> </td>
+            <td> <button ng-click="delContact()">Delete</button> </td>
+        </tr>
+    </table>
+</div>
+
+<script src="/resources/assets/js/vendor/jquery.min.js"></script>
+<script src="/resources/assets/js/vendor/angular.js"></script>
+<script src="/resources/assets/js/vendor/bootstrap.min.js"></script>
+<script src="/resources/assets/js/ngApp.js"></script>
+<script src="/resources/assets/js/controllers.js"></script>
+
+</body>
+</html>
