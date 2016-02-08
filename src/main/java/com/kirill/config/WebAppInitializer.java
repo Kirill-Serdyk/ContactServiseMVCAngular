@@ -38,26 +38,6 @@ public class WebAppInitializer implements WebApplicationInitializer {
 }
 */
 
-/*
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] {SpringConfig.class};
-	}
-
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] {ServletContextConfig.class};
-	}
-
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] {"/"};
-	}
-}
-*/
-
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 //    @Override

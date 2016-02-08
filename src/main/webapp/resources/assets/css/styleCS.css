@@ -1,0 +1,21 @@
+.button{
+    height: 30px;
+    width: 100%;
+    background-color: cornflowerblue;
+    text-align: center;
+    margin-top: 2px;
+    vertical-align: middle;
+    color: white;
+}
+
+.button:hover{
+    background-color: aqua;
+    cursor: pointer;
+}
+
+#general{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #080808;
+    padding: 20px;
+}

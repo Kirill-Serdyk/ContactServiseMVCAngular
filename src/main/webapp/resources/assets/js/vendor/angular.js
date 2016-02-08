@@ -1542,7 +1542,7 @@ function getNgAttribute(element, ngAttr) {
      }
      GoodController2.$inject = ['$scope'];
    </file>
-   <file name="style.css">
+   <file name="styleCS.css">
    div[ng-controller] {
        margin-bottom: 1em;
        -webkit-border-radius: 4px;
@@ -4654,7 +4654,7 @@ function $AnchorScrollProvider() {
                };
              }]);
        </file>
-       <file name="style.css">
+       <file name="styleCS.css">
          #scrollArea {
            height: 280px;
            overflow: auto;
@@ -4705,7 +4705,7 @@ function $AnchorScrollProvider() {
              }
            ]);
        </file>
-       <file name="style.css">
+       <file name="styleCS.css">
          body {
            padding-top: 50px;
          }
@@ -5716,7 +5716,7 @@ function Browser(window, document, $log, $sniffer) {
   var outstandingRequestCount = 0;
   var outstandingRequestCallbacks = [];
 
-  // TODO(vojta): remove this temporary api
+  // TODO(vojta): remove this holders api
   self.$$completeOutstandingRequest = completeOutstandingRequest;
   self.$$incOutstandingRequestCount = function() { outstandingRequestCount++; };
 
@@ -6113,7 +6113,7 @@ function $BrowserProvider() {
            };
          }]);
      </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        p {
          margin: 10px 0 3px;
        }
@@ -19713,7 +19713,7 @@ function limitToFilter() {
            };
          }]);
       </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        .sortorder:after {
          content: '\25b2';
        }
@@ -19778,7 +19778,7 @@ function limitToFilter() {
         }]);
     </file>
 
-    <file name="style.css">
+    <file name="styleCS.css">
        .sortorder:after {
          content: '\25b2';
        }
@@ -23171,7 +23171,7 @@ function classDirective(name, selector) {
        <input ng-model="style4" placeholder="Type: bold, strike" aria-label="Type: bold, strike"><br>
        <label><input type="checkbox" ng-model="warning"> warning (apply "orange" class)</label>
      </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        .strike {
            text-decoration: line-through;
        }
@@ -23239,7 +23239,7 @@ function classDirective(name, selector) {
       <br>
       <span class="base-class" ng-class="myVar">Sample Text</span>
      </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        .base-class {
          transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
        }
@@ -23305,7 +23305,7 @@ var ngClassDirective = classDirective('', true);
           </li>
         </ol>
      </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        .odd {
          color: red;
        }
@@ -23353,7 +23353,7 @@ var ngClassOddDirective = classDirective('Odd', 0);
           </li>
         </ol>
      </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        .odd {
          color: red;
        }
@@ -25117,7 +25117,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
  * that content using the `$sce` service.
  *
  * <example name="NgModelController" module="customControl" deps="angular-sanitize.js">
-    <file name="style.css">
+    <file name="styleCS.css">
       [contenteditable] {
         border: 1px solid black;
         background-color: white;
@@ -25481,7 +25481,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *       </form>
    *     </div>
    *   </file>
-       <file name="style.css">
+       <file name="styleCS.css">
           div {
             display: table-cell;
           }
@@ -28106,7 +28106,7 @@ var ngShowDirective = ['$animate', function($animate) {
     multiElement: true,
     link: function(scope, element, attr) {
       scope.$watch(attr.ngShow, function ngShowWatchAction(value) {
-        // we're adding a temporary, animation-specific class for ng-hide since this way
+        // we're adding a holders, animation-specific class for ng-hide since this way
         // we can control when the element is actually displayed on screen without having
         // to have a global/greedy CSS selector that breaks when other animations are run.
         // Read: https://github.com/angular/angular.js/issues/9103#issuecomment-58335845
@@ -28268,7 +28268,7 @@ var ngHideDirective = ['$animate', function($animate) {
     link: function(scope, element, attr) {
       scope.$watch(attr.ngHide, function ngHideWatchAction(value) {
         // The comment inside of the ngShowDirective explains why we add and
-        // remove a temporary class for the show/hide animation
+        // remove a holders class for the show/hide animation
         $animate[value ? 'addClass' : 'removeClass'](element,NG_HIDE_CLASS, {
           tempClasses: NG_HIDE_IN_PROGRESS_CLASS
         });
@@ -28305,7 +28305,7 @@ var ngHideDirective = ['$animate', function($animate) {
         <span ng-style="myStyle">Sample Text</span>
         <pre>myStyle={{myStyle}}</pre>
      </file>
-     <file name="style.css">
+     <file name="styleCS.css">
        span {
          color: black;
        }

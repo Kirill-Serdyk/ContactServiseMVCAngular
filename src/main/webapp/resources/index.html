@@ -2,43 +2,324 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Contact service</title>
+    <link rel="stylesheet" href="/resources/assets/css/styleCS.css">
+    <link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css">
 </head>
 <body ng-app="ngApp">
 
 <div class="container" ng-controller="contactController">
 
-    First Name: <input type="text" ng-model="name"><br>
-    Phone :     <input type="text" ng-model="phone"><br>
-    Email :     <input type="text" ng-model="email"><br>
-    <button ng-click="addContact()" type="button" class="btn btn-outline-inverse btn-lg">
-        Add
-    </button>
-    <br>
-    <br>
-    <table border="1">
-        <tr>
-            <th width="100">Name</th>
-            <th width="100">Phone</th>
-            <th width="100">Email</th>
-            <th></th>
-            <th></th>
+    <table align="center">
+        <tr height = "50 px">
+            <td colspan="2" align="center" style="padding: 10px">
+                <table>
+                    <tr>
+                        <td width="500 px" align="center">
+                            <span>{{ selectedContact }}</span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" ng-click="showAllUsers()">See all users</button>
+                            <button type="button" class="btn btn-primary" ng-click="showAddNewUser()">Add user</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
         </tr>
-        <tr ng-repeat="x in contacts">
-            <td>{{ x.name }}</td>
-            <td>{{ x.phone }}</td>
-            <td>{{ x.email }}</td>
-            <td> <button>Update</button> </td>
-            <td> <button ng-click="delContact()">Delete</button> </td>
+        <tr height = "400 px" style="vertical-align: top">
+            <td width="100 px">
+                <button type="button" class="btn btn-default" style="width: 100%; margin-top: 5px;" ng-click="showUserInfo()">User info</button>
+                <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 5px;" ng-click="showFriends()">Friends</button>
+                <button type="button" class="btn btn-default" style="width: 100%; margin-top: 5px;" ng-click="showPlaces()">Places</button>
+                <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 5px;" ng-click="showHobbies()">Hobbies</button>
+                <button type="button" class="btn btn-default" style="width: 100%; margin-top: 5px;" ng-click="showConversation()">Conversation</button>
+            </td>
+            <td width="700 px" id="general">
+
+                <!-- add user -->
+                <div ng-show="elem1">
+                    <table>
+                        <tr>
+                            <td>First Name:</td>
+                            <td><input type="text" ng-model="firstName"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name :</td>
+                            <td><input type="text" ng-model="lastName"></td>
+                        </tr>
+                        <tr>
+                            <td>Birh Date :</td>
+                            <td>Day:<input type="text" ng-model="day" size="2" maxlength="2">  Month:<input type="text" ng-model="month" size="2" maxlength="2">  Year:<input type="text" ng-model="year" size="4" maxlength="4"></td>
+                        </tr>
+
+                    </table>
+                    <button ng-click="addContact()" type="button" class="btn btn-primary btn-sm">
+                        Add
+                    </button>
+                </div>
+
+                <div ng-show="elem2">
+                    <table class="table">
+                        <tr>
+                            <th width="150">First Name</th>
+                            <th width="150">Last Name</th>
+                            <th width="100">Birth Date</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="x in contacts">
+                            <td ng-click="selectContact($index)">{{ x.firstName }}</td>
+                            <td ng-click="selectContact($index)">{{ x.lastName }}</td>
+                            <td ng-click="selectContact($index)">{{ x.birthDate }}</td>
+                            <td> <button ng-click="delContact($index)">Delete</button> </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div ng-show="elem3">
+                    <table>
+                        <tr><th>User info</th></tr>
+                        <tr><td>{{ contacts[selectedContactIndex].firstName }}</td></tr>
+                        <tr><td>{{ contacts[selectedContactIndex].lastName }}</td></tr>
+                        <tr><td>{{ contacts[selectedContactIndex].birthDate }}</td></tr>
+                    </table>
+                </div>
+
+                <div ng-show="elem4">
+                    <div>Friends</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">First Name</th>
+                            <th width="150">Last Name</th>
+                        </tr>
+                        <tr ng-repeat="x in contactFriends"  ng-click="addFriendship($index)">
+                            <td>{{ x.firstName }}</td>
+                            <td>{{ x.lastName }}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div>------------------------------------------------------------------------------</div>
+
+                    <div>Add new friend</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">First Name</th>
+                            <th width="150">Last Name</th>
+                        </tr>
+                        <tr ng-repeat="x in contacts"  ng-click="addFriendship($index)">
+                            <td>{{ x.firstName }}</td>
+                            <td>{{ x.lastName }}</td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
+                <div ng-show="elem5">
+                    <div>Contact places</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">Title</th>
+                            <th width="150">Description</th>
+                            <th width="100">Longitude</th>
+                            <th width="100">Latitude</th>
+                        </tr>
+                        <tr ng-repeat="x in contactPlaces">
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                            <td>{{ x.longitude }}</td>
+                            <td>{{ x.latitude }}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div>------------------------------------------------------------------------------</div>
+
+                    <div>Add place</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">Title</th>
+                            <th width="150">Description</th>
+                            <th width="100">Longitude</th>
+                            <th width="100">Latitude</th>
+                        </tr>
+                        <tr ng-repeat="x in places" ng-click="addExistPlace($index)">
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                            <td>{{ x.longitude }}</td>
+                            <td>{{ x.latitude }}</td>
+                        </tr>
+                    </table>
+                    <br>
+
+                    <table>
+                        <tr>
+                            <td colspan="2">Create new place</td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td><input type="text" ng-model="placeTitle"></td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td><input type="text" ng-model="placeDescription"></td>
+                        </tr>
+                        <tr>
+                            <td>Longitude:</td>
+                            <td><input type="text" ng-model="longitude"></td>
+                        </tr>
+                        <tr>
+                            <td>Latitude:</td>
+                            <td><input type="text" ng-model="latitude"></td>
+                        </tr>
+                    </table>
+                    <button ng-click="addNewPlace()" type="button" class="btn btn-primary btn-sm">
+                        Add
+                    </button>
+
+                    <div>Get all contacts for place</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">Title</th>
+                            <th width="150">Description</th>
+                            <th width="100">Longitude</th>
+                            <th width="100">Latitude</th>
+                        </tr>
+                        <tr ng-repeat="x in places" ng-click="getAllContactsForPlace($index)">
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                            <td>{{ x.longitude }}</td>
+                            <td>{{ x.latitude }}</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div ng-show="elem8">
+                    <table class="table">
+                        <tr>
+                            <th width="150">First Name</th>
+                            <th width="150">Last Name</th>
+                            <th width="100">Birth Date</th>
+                        </tr>
+                        <tr ng-repeat="x in contactsForPlace">
+                            <td>{{ x.firstName }}</td>
+                            <td>{{ x.lastName }}</td>
+                            <td>{{ x.birthDate }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div ng-show="elem6">
+                    <div>Contact hobbies</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">Title</th>
+                            <th width="150">Description</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="x in contactHobbies">
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div>------------------------------------------------------------------------------</div>
+
+                    <div>Add hobby</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">Title</th>
+                            <th width="150">Description</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="x in hobbies" ng-click="addExistHobby($index)">
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+
+                    <table>
+                        <tr>
+                            <td colspan="2">Create new hobby</td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td><input type="text" ng-model="hobbyTitle"></td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td><input type="text" ng-model="hobbyDescription"></td>
+                        </tr>
+                    </table>
+                    <button ng-click="addNewHobby()" type="button" class="btn btn-primary btn-sm">
+                        Add
+                    </button>
+
+                    <div>Get all contacts width hobby</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">Title</th>
+                            <th width="150">Description</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="x in hobbies" ng-click="getAllContactsWidthHobby($index)">
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div ng-show="elem7">
+                    <table class="table">
+                        <tr>
+                            <th width="150">First Name</th>
+                            <th width="150">Last Name</th>
+                            <th width="100">Birth Date</th>
+                        </tr>
+                        <tr ng-repeat="x in contactsWidthHobby">
+                            <td>{{ x.firstName }}</td>
+                            <td>{{ x.lastName }}</td>
+                            <td>{{ x.birthDate }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div ng-show="elem9">
+                    <div>Conversation</div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">First Name</th>
+                            <th width="150">Last Name</th>
+                            <th width="100">Birth Date</th>
+                        </tr>
+                        <tr ng-repeat="x in contacts" ng-click="getConversation($index)">
+                            <td>{{ x.firstName }}</td>
+                            <td>{{ x.lastName }}</td>
+                            <td>{{ x.birthDate }}</td>
+                        </tr>
+                    </table>
+
+                    <div ng-show="elem10">
+                        Conversation " bla bla bla"
+                    </div>
+
+                </div>
+
+            </td>
         </tr>
     </table>
+
 </div>
 
 <script src="/resources/assets/js/vendor/jquery.min.js"></script>
 <script src="/resources/assets/js/vendor/angular.js"></script>
 <script src="/resources/assets/js/vendor/bootstrap.min.js"></script>
-<script src="/resources/assets/js/ngApp.js"></script>
-<script src="/resources/assets/js/controllers.js"></script>
+<script src="/resources/assets/js/ngAppCS.js"></script>
+<script src="/resources/assets/js/controllerCS.js"></script>
 
 </body>
 </html>

@@ -24,7 +24,6 @@ import java.util.Properties;
 @Configuration
 @ComponentScan({"com.kirill.dao", "com.kirill.services"})
 @EnableTransactionManagement
-//@PropertySource("classpath:project.properties")
 public class SpringConfig {
 
     @Bean
