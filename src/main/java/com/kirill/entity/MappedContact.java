@@ -32,12 +32,15 @@ public class MappedContact {
     @ManyToMany
     private Set<MappedHobby> hobbies;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<MappedContact> friends;
 
     @ManyToMany
     private Set<MappedPlace> places;
 
+
+    public MappedContact() {
+    }
 
     public void addHobby(MappedHobby hobby){
         hobbies.add(hobby);

@@ -3,16 +3,17 @@ package com.kirill.entity;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.kirill.model.Contact;
+import com.kirill.model.Message;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
  * Created by Kirill on 08.02.2016.
  */
+
+@Entity
+@Table(name = "Message")
 public class MappedMessage {
 
     @Id
@@ -24,13 +25,24 @@ public class MappedMessage {
     private LocalDateTime date;
 
     @OneToOne
-    private Contact from;
+    private MappedContact from;
 
     @OneToOne
-    private Contact to;
+    private MappedContact to;
 
     @Column(name = "CONTENT")
     private String content;
+
+
+    public MappedMessage() {
+    }
+
+    public MappedMessage(Message message, MappedContact mappedContact1, MappedContact mappedContact2) {
+        this.date = message.getDate();
+        this.from = mappedContact1;
+        this.to = mappedContact2;
+        this.content = message.getContent();
+    }
 
     public long getId() {
         return id;
@@ -48,19 +60,19 @@ public class MappedMessage {
         this.date = date;
     }
 
-    public Contact getFrom() {
+    public MappedContact getFrom() {
         return from;
     }
 
-    public void setFrom(Contact from) {
+    public void setFrom(MappedContact from) {
         this.from = from;
     }
 
-    public Contact getTo() {
+    public MappedContact getTo() {
         return to;
     }
 
-    public void setTo(Contact to) {
+    public void setTo(MappedContact to) {
         this.to = to;
     }
 

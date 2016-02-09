@@ -289,7 +289,7 @@
 
 
                 <div ng-show="elem9">
-                    <div>Conversation</div>
+                    <div>Contacts</div>
                     <table class="table">
                         <tr>
                             <th width="150">First Name</th>
@@ -304,7 +304,24 @@
                     </table>
 
                     <div ng-show="elem10">
-                        Conversation " bla bla bla"
+                        Conversation
+                        <table class="table">
+                            <tr ng-repeat="x in conversation">
+                                <td width="100 px">{{ x.from.firstName }}</td>
+                                <td>{{ x.content }}</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr>
+                                <td>Message:</td>
+                                <td><input type="text" ng-model="message"></td>
+                            </tr>
+                        </table>
+                        <button ng-click="addMessage()" type="button" class="btn btn-primary btn-sm">
+                            Send
+                        </button>
+
                     </div>
 
                 </div>

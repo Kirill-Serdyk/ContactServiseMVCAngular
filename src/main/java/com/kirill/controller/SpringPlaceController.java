@@ -43,7 +43,6 @@ public class SpringPlaceController {
 
     @RequestMapping(value = "/getContact", method = RequestMethod.POST)
     public @ResponseBody List<Place> getContactPlaces(@RequestBody HolderContact holderContact){
-        System.out.println("getContactPlaces");
         Contact contact = new Contact(holderContact);
         return contactService.getContactPlaces(contact);
     }

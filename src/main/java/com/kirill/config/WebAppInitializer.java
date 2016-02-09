@@ -40,30 +40,14 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-//    @Override
-//    public void onStartup(ServletContext servletContext) throws ServletException {
-//        WebApplicationContext context = getContext();
-//        servletContext.addListener(new ContextLoaderListener(context));
-//        ServletRegistration.Dynamic dispatcher =
-//                servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
-//        dispatcher.setLoadOnStartup(1);
-//        dispatcher.addMapping("/");
-//    }
-//
-//    private AnnotationConfigWebApplicationContext getContext() {
-//        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-//        context.register(AppConfig.class);
-//        return context;
-//    }
-
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {SpringConfig.class}; // We don`t need any special servlet config yet.WebAppInitializer.class
+        return new Class[] {SpringConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {SpringMVCConfig.class}; // null
+        return new Class[] {SpringMVCConfig.class};
     }
 
     @Override

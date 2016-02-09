@@ -70,7 +70,6 @@ public class SpringConfig {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.hbm2ddl.auto", "update");
         return properties;

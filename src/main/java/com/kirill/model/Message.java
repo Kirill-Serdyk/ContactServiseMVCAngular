@@ -2,6 +2,8 @@ package com.kirill.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.kirill.entity.MappedMessage;
+import com.kirill.holders.HolderContactMessage;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +21,22 @@ public class Message {
     private String content;
 
 
+    public Message() {
+    }
+
+    public Message(MappedMessage mappedMessage) {
+        this.date = mappedMessage.getDate();
+        this.from = new Contact(mappedMessage.getFrom());
+        this.to = new Contact(mappedMessage.getTo());
+        this.content = mappedMessage.getContent();
+    }
+
+    public Message(HolderContactMessage holder) {
+        this.date = LocalDateTime.now();
+        this.from = new Contact(holder.getC1FirstName(), holder.getC1LastName(), holder.getC1BirthDate());
+        this.to = new Contact(holder.getC2FirstName(), holder.getC2LastName(), holder.getC2BirthDate());
+        this.content = holder.getContent();
+    }
 
     public LocalDateTime getDate() {
         return date;

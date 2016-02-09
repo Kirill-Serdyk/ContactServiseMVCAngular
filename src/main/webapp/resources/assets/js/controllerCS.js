@@ -338,7 +338,33 @@ appControllers.controller("contactController", ['$scope', '$http', function ($sc
 // Conversation ----------------------------------------------------------------------------------------------------------
 
     $scope.getConversation = function(index){
-        $scope.showContactConversation();
+        $scope.conversationContactIndex = index;
+        var str1 = getBirthDateStr($scope.selectedContactIndex);
+        var str2 = getBirthDateStr(index);
+
+        $http.post('/message/get', { "c1FirstName": $scope.contacts[$scope.selectedContactIndex].firstName, "c1LastName": $scope.contacts[$scope.selectedContactIndex].lastName, "c1BirthDate": str1,
+                "c2FirstName": $scope.contacts[index].firstName, "c2LastName": $scope.contacts[index].lastName, "c2BirthDate": str2 }
+        ).
+            then(function (responce) {
+                $scope.conversation = responce.data;
+                $scope.showContactConversation();
+            });
+    };
+
+    $scope.addMessage = function(){
+        var str1 = getBirthDateStr($scope.selectedContactIndex);
+        var str2 = getBirthDateStr($scope.conversationContactIndex);
+        $http.post('/message/store', { "c1FirstName": $scope.contacts[$scope.selectedContactIndex].firstName, "c1LastName": $scope.contacts[$scope.selectedContactIndex].lastName, "c1BirthDate": str1,
+                "c2FirstName": $scope.contacts[$scope.conversationContactIndex].firstName, "c2LastName": $scope.contacts[$scope.conversationContactIndex].lastName, "c2BirthDate": str2,
+                "content":$scope.message }
+        ).
+            success(function (data, status, headers, config) {
+                $scope.message = '';
+                $scope.getConversation($scope.conversationContactIndex);
+            }).
+            error(function (data, status, headers, config) {
+                alert("Exception details: " + JSON.stringify({data: data}));
+            });
     };
 
 // Conversation ----------------------------------------------------------------------------------------------------------

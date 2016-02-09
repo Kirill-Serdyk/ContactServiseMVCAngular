@@ -4,8 +4,10 @@ package com.kirill.services;
 import com.kirill.model.Contact;
 import com.kirill.model.Hobby;
 import com.kirill.holders.HolderContact;
+import com.kirill.model.Message;
 import com.kirill.model.Place;
 
+import java.lang.reflect.Member;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +48,10 @@ public interface ContactService {
 
     List<Contact> getAllContactsWidthPlace(Place place);
 
+
+    void storeMessage(Message message);
+
+    List<Message> getConversation(Contact from, Contact to);
 
     //Contact getContact(String email);
 

@@ -2,12 +2,14 @@ package com.kirill.services.impl;
 
 import com.kirill.dao.ContactDao;
 import com.kirill.dao.HobbyDao;
+import com.kirill.dao.MessageDao;
 import com.kirill.dao.PlaceDao;
 import com.kirill.entity.MappedContact;
 import com.kirill.entity.MappedHobby;
 import com.kirill.entity.MappedPlace;
 import com.kirill.model.Contact;
 import com.kirill.model.Hobby;
+import com.kirill.model.Message;
 import com.kirill.model.Place;
 import com.kirill.services.ContactService;
 import com.kirill.holders.HolderContact;
@@ -32,6 +34,9 @@ public class ContactServiceImpl implements ContactService {
 
     @Autowired
     private PlaceDao placeDao;
+
+    @Autowired
+    private MessageDao messageDao;
 
     @Override
     @Transactional
@@ -185,6 +190,17 @@ public class ContactServiceImpl implements ContactService {
         return contacts;
     }
 
+    @Override
+    @Transactional
+    public void storeMessage(Message message) {
+        messageDao.storeMassage(message);
+    }
+
+    @Override
+    @Transactional
+    public List<Message> getConversation(Contact from, Contact to) {
+        return messageDao.getConversation(from, to);
+    }
 
     //    @Override
 //    @Transactional
@@ -211,5 +227,13 @@ public class ContactServiceImpl implements ContactService {
 
     public void setHobbyDao(HobbyDao hobbyDao) {
         this.hobbyDao = hobbyDao;
+    }
+
+    public void setPlaceDao(PlaceDao placeDao) {
+        this.placeDao = placeDao;
+    }
+
+    public void setMessageDao(MessageDao messageDao) {
+        this.messageDao = messageDao;
     }
 }
